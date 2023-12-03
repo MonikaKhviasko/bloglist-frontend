@@ -22,4 +22,22 @@ const create = async newObject => {
   return response.data
 }
 
-export default { getAll, create, setToken }
+const remove = async (blogId) => {
+  try {
+    const response = await axios.delete(`${baseUrl}/${blogId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error removing blog: ${error}`);
+  }
+}
+
+const update = async (updatedBlog) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${updatedBlog.id}`, updatedBlog);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error updating blog: ${error}`);
+  }
+}
+
+export default { getAll, create, setToken, remove, update }
